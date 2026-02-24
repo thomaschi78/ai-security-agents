@@ -1,0 +1,64 @@
+# AI Security Agents Configuration
+# Copy to config.yaml and customize
+
+# Execution settings
+mode: adaptive  # parallel, sequential, adaptive
+max_concurrent_agents: 5
+max_payloads_per_agent: 100
+enable_chaining: true
+
+# Agent selection
+enabled_agents:
+  - sqli
+  - xss
+  - cmdi
+  - lfi
+  - ssrf
+  - xxe
+  - log4shell
+  - csrf
+  - ssti
+  - path_traversal
+
+# Disable specific agents
+disabled_agents: []
+
+# HTTP client settings
+http:
+  timeout: 30.0
+  max_retries: 2
+  verify_ssl: false
+  follow_redirects: false
+  user_agent: "AI-Security-Agent/1.0"
+
+# Claude API settings
+claude:
+  # api_key: sk-ant-...  # Or set ANTHROPIC_API_KEY env var
+  model: claude-sonnet-4-20250514
+  max_tokens: 2048
+  temperature: 0.3
+  use_mock: false  # Set true for testing without API
+
+# ZAP integration
+zap:
+  enabled: false
+  url: http://localhost:8080
+  # api_key: your-zap-api-key
+  report_findings: true
+
+# Audit logging
+audit:
+  enabled: true
+  log_dir: ./logs
+  console_output: true
+  max_payload_length: 500
+
+# Report generation
+report:
+  output_dir: ./reports
+  formats:
+    - json
+    - html
+    - markdown
+  include_evidence: true
+  # template_dir: ./templates  # Custom templates
